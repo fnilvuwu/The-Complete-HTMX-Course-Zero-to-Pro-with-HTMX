@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/htmx.org@1.9.10"
+        integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
+        crossorigin="anonymous"></script>
+    <title>Selecting Response</title>
+</head>
+
+<body>
+    <!-- http://localhost:1330 -->
+    <!-- using select it will only take/load the H3 which has the id of target2 (excluding the div)-->
+    <!-- note: the content is still the same tho (the div still exist in the response) -->
+    <button hx-post="http://localhost:1330/oob" hx-target="#destination" hx-select="#target2">
+        Load Content H3 Only
+    </button>
+
+    <div id="destination">
+
+    </div>
+</body>
+
+</html>

@@ -94,8 +94,16 @@ app.post("/upload", upload.single("file"), async (req, res) => {
     res.send(`<b>Upload Successful</b>: ${filePath}`);
 })
 
-app.post("/oob", async (req, res) => {
+app.post("/oob-swap", async (req, res) => {
+    // without hx-swap-oob="true" the target will not be swapped if using hx-swap on HTML
+    res.send(`<div>
+        <h3 id="target2" hx-swap-oob="true">Hello World</h3>
+        This goes into the main target
+    </div>`);
+});
 
+app.post("/oob", async (req, res) => {
+    // using the code below it'll be added on top instead
     res.send(`<div>
         <h3 id="target2">Hello World</h3>
         This goes into the main target

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/htmx.org@1.9.10"
+        integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
+        crossorigin="anonymous"></script>
+    <title>Content Swapping</title>
+</head>
+
+<body>
+    <!-- http://localhost:1330 -->
+    <!-- This will place the loaded content as a child by default hx-swap="innerHTML" -->
+    <button hx-post="http://localhost:1330/message" hx-target="#destination">
+        Load Content a child to target
+    </button>
+
+    <button hx-post="http://localhost:1330/message" hx-target="#destination-swap" hx-swap="outerHTML">
+        Load Content by swapping target
+    </button>
+
+    <div id="destination">
+
+    </div>
+
+    <div id="destination-swap"></div>
+
+
+</body>
+
+</html>
