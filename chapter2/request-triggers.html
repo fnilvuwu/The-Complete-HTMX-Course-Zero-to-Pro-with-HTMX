@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/htmx.org@1.9.10"
+        integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
+        crossorigin="anonymous"></script>
+    <title>Request Triggers</title>
+</head>
+<body>
+    <!-- POST request -->
+    <!-- this will keep firing and make a post request since mouseenter is always true, if there is no modifier -->
+    <div hx-post="http://localhost:1330/message" hx-trigger="mouseenter">
+        Make POST Request on Mouse Enter
+    </div>
+    <div hx-post="http://localhost:1330/message" hx-trigger="mouseleave">
+        Make POST Request on Mouse Leave
+    </div>
+    <input type="text" hx-post="http://localhost:1330/message" hx-trigger="change">
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/htmx.org@1.9.10"
+        integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
+        crossorigin="anonymous"></script>
+    <title>Using Special Events</title>
+    <style>
+        #scrollme1 {
+            margin-top: 1100px;
+            color: white;
+            height: 150px;
+            width: 300px;
+            background-color: red;
+        }
+
+        #scrollme2 {
+            color: white;
+            height: 150px;
+            width: 300px;
+            background-color: green;
+        }
+
+        #scrollme3 {
+            color: white;
+            height: 150px;
+            width: 300px;
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- http://localhost:1330 -->
+    <div id="responseLoad"></div>
+
+    <div id="responseRevealed"></div>
+
+    <div id="responseIntersect"></div>
+
+    <div id="responseIntersectThreshold"></div>
+
+
+    <div hx-get="http://localhost:1330" hx-target="#responseLoad" hx-trigger="load">
+        Fire as the page loads
+    </div>
+    <!-- will be fired if it's revealed (need to be a more revealed than intersect but even if it's just a tiny part or 0.0001% of it is revealed it will be triggered) -->
+    <div hx-get="http://localhost:1330" hx-target="#responseRevealed" hx-trigger="revealed" id="scrollme1">
+        Fire when I am revealed
+    </div>
+    <!-- intersect with viewport  -->
+    <div hx-get="http://localhost:1330" hx-target="#responseIntersect" hx-trigger="intersect" id="scrollme2">
+        Fire when I am intersect with viewport
+    </div>
+    <!-- with threshold -->
+    <div hx-get="http://localhost:1330" hx-target="#responseIntersectThreshold" hx-trigger="intersect threshold:0.5" id="scrollme3">
+        Fire when I am intersect with viewport threshold 0.5
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/htmx.org@1.9.10"
+        integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
+        crossorigin="anonymous"></script>
+    <title>Syncing Requests</title>
+</head>
+
+<body>
+    <!-- http://localhost:1330 -->
+    <button id="firstRequest" hx-get="http://localhost:1330/index-timeout" hx-target="#target1">
+        First Request
+    </button>
+
+    <!-- this request will be dropped if the firstRequest is not finished yet -->
+    <button id="secondRequest" hx-post="http://localhost:1330/message" hx-target="#target2"
+        hx-sync="#firstRequest:drop">
+        This request is dropped/cancelled if firstRequest is still ongoing
+    </button>
+
+    <!-- this request will replace the firstRequest even if it's not finished yet -->
+    <button id="thirdRequest" hx-post="http://localhost:1330/message" hx-target="#target3"
+        hx-sync="#firstRequest:replace">
+        This request will replace firstRequest even if it's still ongoing
+    </button>
+
+    <button id="fourthRequest" hx-post="http://localhost:1330/message" hx-target="#target4" hx-sync="#firstRequest:queue">
+        This request will queue/wait till firstRequest is done then trigger it
+    </button>
+
+    <div id="target1">
+        <b>Target 1</b>
+    </div>
+
+    <div id="target2">
+        <b>Target 2</b>
+    </div>
+
+    <div id="target3">
+        <b>Target 3</b>
+    </div>
+
+    <div id="target4">
+        <b>Target 4</b>
+    </div>
+</body>
+
+</html>

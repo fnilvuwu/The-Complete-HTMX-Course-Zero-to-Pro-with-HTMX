@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/htmx.org@1.9.10"
+        integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
+        crossorigin="anonymous"></script>
+    <title>Sending Data</title>
+    <script>
+        function getPassword() {
+            return "htmxrocksagainfromfunction"
+        }
+
+    </script>
+</head>
+
+<body>
+    <!-- http://localhost:1330 -->
+    <!-- Using Form -->
+    <form action="">
+        <input type="email" name="email" placeholder="Enter Email" />
+        <br>
+        <input type="text" name="pass" placeholder="Enter Password" />
+
+        <button hx-post="http://localhost:1330/echopayload" hx-target="#response-form">
+            Submit Form
+        </button>
+    </form>
+
+    <div id="response-form">
+
+    </div>
+
+    <!-- Using JSON Object -->
+    <button hx-post="http://localhost:1330/echopayload" hx-target="#response-json"
+        hx-vals='{"email": "fnilvu@a.com", "pass": "htmxrocksagain"}'>
+        Submit JSON
+    </button>
+
+    <div id="response-json">
+
+    </div>
+
+    <!-- Using JSON Object with JS Function -->
+    <button hx-post="http://localhost:1330/echopayload" hx-target="#response-json-function"
+        hx-vals='js:{"email": "fnilvu@a.com", "pass": getPassword()}'>
+        Submit JSON with Function
+    </button>
+
+    <div id="response-json-function">
+
+    </div>
+
+    <!-- Using Input -->
+    <button hx-post="http://localhost:1330/echopayload" hx-target="#response-input" hx-include="#myEmailField">
+        Submit with Input Only
+    </button>
+
+    <div id="response-input">
+
+    </div>
+
+    <input type="text" name="email" id="myEmailField">
+</body>
+
+</html>

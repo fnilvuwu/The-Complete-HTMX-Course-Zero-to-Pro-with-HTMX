@@ -12,7 +12,7 @@ const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended : true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Configure Multer
 const storage = multer.diskStorage({
@@ -24,32 +24,42 @@ const storage = multer.diskStorage({
     }
 })
 
-const upload = multer({storage : storage});
+const upload = multer({ storage: storage });
 
 
 app.get("/", (req, res) => {
-    
+
     /* setTimeout(() => {
         res.send("<h2>Welcome to the Node Hypermedia API</h2>");
     }, 7000); */
 
     res.send("<h2>Welcome to the Node Hypermedia API</h2>");
-    
+
 })
 
-app.post("/message", async (req, res) =>{
+app.get("/index-timeout", (req, res) => {
+    setTimeout(() => {
+        res.send("<h2>Welcome to the Node Hypermedia API</h2>");
+    }, 2000);
+})
+
+app.post("/message", async (req, res) => {
 
     /* res.set({
         "Last-Modified": "Wednesday, 27 Sept 2023"
     }) */
-    
+
     res.send(`<div><h3>Hello World</h3></div>`);
 });
 
-app.post("/script", async (req, res) =>{
+app.post("/message-timeout", async (req, res) => {
+    setTimeout(() => {
+        res.send(`<div><h3>Hello World 2s Timeout</h3></div>`);
+    }, 2000);
+});
 
-    
-    
+
+app.post("/script", async (req, res) => {
     res.send(`<div>
         <h3>I am loading a script</h3>
         <script>
@@ -58,10 +68,10 @@ app.post("/script", async (req, res) =>{
     </div>`);
 });
 
-app.post("/htmx", async (req, res) =>{
+app.post("/htmx", async (req, res) => {
 
-    
-    
+
+
     res.send(`<div>
         <h3>I am loading HTMX Stuff</h3>
         <button type="button" 
@@ -70,7 +80,7 @@ app.post("/htmx", async (req, res) =>{
     </div>`);
 });
 
-app.post("/echopayload", async (req, res) =>{
+app.post("/echopayload", async (req, res) => {
 
     const email = req.body.email;
     const pass = req.body.pass;
@@ -84,8 +94,8 @@ app.post("/upload", upload.single("file"), async (req, res) => {
     res.send(`<b>Upload Successful</b>: ${filePath}`);
 })
 
-app.post("/oob", async (req, res) =>{
-    
+app.post("/oob", async (req, res) => {
+
     res.send(`<div>
         <h3 id="target2">Hello World</h3>
         This goes into the main target
@@ -126,6 +136,6 @@ app.get("/users", (req, res) => {
 
 const PORT = process.env.PORT || 1330;
 
-app.listen (PORT, () => {
+app.listen(PORT, () => {
     console.log(`App is now running on port: ${PORT}`);
 })

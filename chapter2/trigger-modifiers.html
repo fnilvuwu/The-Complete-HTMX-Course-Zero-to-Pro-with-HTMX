@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/htmx.org@1.9.10"
+        integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
+        crossorigin="anonymous"></script>
+    <title>Trigger Modifiers</title>
+</head>
+<body>
+    <!-- The once modifier will only make the trigger activated only once -->
+    <div hx-post="http://localhost:1330/message" hx-trigger="mouseenter once">Make Post Request on Mouse Enter Once</div>
+
+    <div hx-post="http://localhost:1330/message" hx-trigger="click delay:5s">Make a 5s Delayed on Click Request</div>
+    <div hx-post="http://localhost:1330/message" hx-trigger="click delay:2s">Make a 2s Delayed on Click Request</div>
+    <div hx-post="http://localhost:1330/message" hx-trigger="click delay:600ms">Make a 600ms Delayed on Click Request</div>
+
+    <div hx-post="http://localhost:1330/message" hx-trigger="click from:#requestTrigger">Will be changed if requestTrigger is pressed</div>
+
+
+    <button type="button" id="requestTrigger">Trigger the POST Request</button>
+
+</body>
+</html>

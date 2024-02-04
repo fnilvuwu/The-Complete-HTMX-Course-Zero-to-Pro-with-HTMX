@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/htmx.org@1.9.10"
+        integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
+        crossorigin="anonymous"></script>
+    <title>Progress Indicators</title>
+</head>
+
+<body>
+    <!-- http://localhost:1330 -->
+    <!-- a child -->
+    <div hx-post="http://localhost:1330/message-timeout">
+        Click Me and see the indicator
+        <p class="htmx-indicator">
+            Loading indicator child...
+        </p>
+    </div>
+
+    <!-- different parent -->
+    <div hx-post="http://localhost:1330/message-timeout" hx-indicator="#my-progress-indicator">
+        Click Me and see the indicator
+    </div>
+
+    <p id="my-progress-indicator" class="htmx-indicator">
+        Loading indicator different parent...
+    </p>
+</body>
+
+</html>
