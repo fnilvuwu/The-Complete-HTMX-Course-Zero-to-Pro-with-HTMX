@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/htmx.org@1.9.10"
+        integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
+        crossorigin="anonymous"></script>
+    <title>Caching Responses</title>
+
+    <button hx-push-url="true" type="button" hx-post="http://localhost:1330/htmx" hx-target="#destination-endpoint">Load Endpoint Vulnerability</button>
+
+    <!-- fix: this will disable calling endpoint inside the called content -->
+    <div id="destination-endpoint" hx-disable></div>
+    <!-- vulnerable example -->
+    <!-- <div id="destination" ></div> -->
+
+    <!-- XSS vulnerable example -->
+    <button hx-push-url="true" type="button" hx-post="http://localhost:1330/script" hx-target="#destination-xss">Load XSS Vulnerability</button>
+
+    <div id="destination-xss"></div>
+
+    <!-- fix: local/cache vulnerability -->
+    <div id="destination-cache" hx-history="false"></div>
+
+
+    <script>
+        // where to find config: https://htmx.org/docs/#config
+
+        // fix: this will disable script tags in the response
+        htmx.config.allowScriptTags = false;
+        // fix: this will disable eval function in the response
+        htmx.config.allowEval = false;
+        // fix: this will disable request from unknown sources, make sure it's on the same domain
+        // (if this is enabled you can't call request so comment it)
+        // htmx.config.selfRequestsOnly = true;
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

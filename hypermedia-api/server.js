@@ -44,10 +44,10 @@ app.get("/index-timeout", (req, res) => {
 })
 
 app.post("/message", async (req, res) => {
-
-    /* res.set({
-        "Last-Modified": "Wednesday, 27 Sept 2023"
-    }) */
+    // set the last date to enable caching
+    // res.set({
+    //     "Last-Modified": "Wednesday, 27 Sept 2023"
+    // })
 
     res.send(`<div><h3>Hello World</h3></div>`);
 });
@@ -64,6 +64,7 @@ app.post("/script", async (req, res) => {
         <h3>I am loading a script</h3>
         <script>
             console.log("Hey");
+            alert("Hackerman is here!!");
         </script>
     </div>`);
 });

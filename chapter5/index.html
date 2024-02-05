@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/htmx.org@1.9.10"
+        integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
+        crossorigin="anonymous"></script>
+    <title>Web Sockets</title>
+</head>
+
+<body>
+    <!-- connect:ws://localhost:5000 -->
+
+    <div hx-ws="connect:ws://localhost:5000">
+
+        <div id="chat_box"></div>
+
+        <form hx-ws="send">
+            <input name="chat_message" type="text">
+            <br>
+            <button type="submit">Send</button>
+        </form>
+
+    </div>
+
+</body>
+
+</html>

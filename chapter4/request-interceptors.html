@@ -28,6 +28,7 @@
             evt.detail.parameters["API_KEY"] = "API-KEY-HERE";
         })
 
+        // where to find HTMX event: https://htmx.org/reference/#events
         // this will show all the events that are taking place
         htmx.logger = function (elt, event, data) {
             console.log(elt, event, data);
