@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/htmx.org@1.9.10"
+        integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
+        crossorigin="anonymous"></script>
+    <title>Load Event</title>
+    <script>
+        // this will log the javascript
+        htmx.onLoad((target) => {
+            console.log(target);
+        })
+
+    </script>
+</head>
+
+<body>
+    <!-- http://localhost:1330 -->
+    
+    <script>
+        let users;
+        
+        document.body.addEventListener("htmx:load", (evt) => {
+            console.log(evt);
+
+            fetch('http://localhost:1330/users')
+            .then(response => response.json())
+            .then(data => {
+                users = data;
+                console.log(users);
+            });
+        })
+
+    </script>
+    
+</body>
+
+</html>

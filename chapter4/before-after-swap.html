@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/htmx.org@1.9.10"
+        integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
+        crossorigin="anonymous"></script>
+    <title>Before and After Swap Events</title>
+
+    <script>
+        
+        htmx.on("htmx:beforeSwap", (evt) => {
+            console.log("Before Swap");
+            // this will log the element that is being swapped
+            console.log(evt.detail.elt);
+        })
+
+        htmx.on("htmx:afterSwap", (evt) => {
+            console.log("After Swap");
+            console.log(evt);
+        })
+
+    </script>
+
+    <button hx-post="http://localhost:1330/message" hx-target="#destination">
+        Load Stuff
+    </button>
+
+    <div id="destination"></div>
+</head>
+
+<body>
+    <!-- http://localhost:1330 -->
+
+
+</body>
+
+</html>
